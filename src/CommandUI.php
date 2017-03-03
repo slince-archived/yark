@@ -5,7 +5,6 @@
  */
 namespace Slince\Yark;
 
-use Slince\Yark\YarkCommand;
 use Symfony\Component\Console\Application;
 
 class CommandUI
