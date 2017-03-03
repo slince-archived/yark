@@ -126,7 +126,8 @@ class Yark
         foreach ($sheets as $sheet) {
             $orderItems = $this->handleSrcSheet($sheet);
             foreach ($orderItems as $key => $orderItem) {
-                $mainSku = strstr($orderItem['Lineitem sku'], '-', true);
+                $orderItem['Lineitem sku'] = trim($orderItem['Lineitem sku']);
+                $mainSku = strpos($orderItem['Lineitem sku'], '-') === false ? $orderItem['Lineitem sku'] : strstr($orderItem['Lineitem sku'], '-', true);
                 $shippingCountry = strtoupper($orderItem['Shipping Country']);
                 if (!empty($this->prices[$mainSku][$shippingCountry])) {
                     $total = $this->prices[$mainSku][$shippingCountry] * intval($orderItem['Lineitem quantity']);
