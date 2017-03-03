@@ -1,0 +1,28 @@
+{
+    "name": "slince/yark",
+    "description": "Order price handler",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "slince",
+            "email": "taosikai@yeah.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Slince\\Yark\\": "./src"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "phpoffice/phpexcel": "^1.8",
+        "symfony/filesystem": "^3.2",
+        "symfony/console": "^3.2",
+        "symfony/finder": "^3.2",
+        "slince/event": "^1.0"
+    },
+    "bin": [
+        "yark"
+    ]
+}
