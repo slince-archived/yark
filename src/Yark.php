@@ -128,7 +128,7 @@ class Yark
             foreach ($orderItems as $key => $orderItem) {
                 $mainSku = strstr($orderItem['Lineitem sku'], '-', true);
                 $shippingCountry = strtoupper($orderItem['Shipping Country']);
-                if (isset($this->prices[$mainSku][$shippingCountry])) {
+                if (!empty($this->prices[$mainSku][$shippingCountry])) {
                     $total = $this->prices[$mainSku][$shippingCountry] * intval($orderItem['Lineitem quantity']);
                 } else {
                     $total = '###';
