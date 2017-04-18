@@ -17,6 +17,7 @@ class CommandUI
     {
         return [
             new YarkCommand(),
+            new CrawlCommand(),
         ];
     }
 
