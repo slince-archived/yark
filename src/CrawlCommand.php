@@ -26,7 +26,10 @@ class CrawlCommand extends Command
     public function initialize(InputInterface $input, OutputInterface $output)
     {
         $this->httpClient = new Client([
-            'verify' => false
+            'verify' => false,
+            'proxy' => '40.74.112.196:80',
+            'timeout' => 60,
+            'connection_timeout' => 60
         ]);
     }
 
@@ -42,9 +45,11 @@ class CrawlCommand extends Command
 
     protected function processUrl($url)
     {
+//        $url = 'http://www.ip.cn';
         try {
             $response = $this->httpClient->post($url, [
                 'headers' => [
+                    'Cookie' => 's2_uLang=en; PHPSESSID=vafdirlk9ot1pkog7954ilrbp1; s2_uID=30212; s2_uKey=00928125d7ea46883e238bb97cf3c28ff3750f4b; s2_uDer=f9e5131966edfb57505448b597fa5bde53f64107; s2_theme_ui=red; s2_csrf_cookie_name=cb3f55822249d75f73bab6af191c137f; __unam=737437c-15b7ee8e5b8-6a5e10fa-8; s2_csrf_cookie_name=cb3f55822249d75f73bab6af191c137f; _ga=GA1.2.787444202.1492482844; sw=190.3; sh=39.9',
                     'Referer' => 'https://myip.ms/browse/sites/1/ipID/23.227.38.0/ipIDii/23.227.38.255/sort/2/asc/1/',
                     'X-Requested-With' => 'XMLHttpRequest',
                 ],

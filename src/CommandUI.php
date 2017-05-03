@@ -18,6 +18,7 @@ class CommandUI
         return [
             new YarkCommand(),
             new CrawlCommand(),
+            new RepairCommand()
         ];
     }
 
