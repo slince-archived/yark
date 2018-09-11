@@ -1,6 +1,6 @@
 {
     "name": "slince/yark",
-    "description": "Order price handler",
+    "description": "Yark is a collection of tools.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -16,14 +16,6 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "phpoffice/phpexcel": "^1.8",
-        "symfony/filesystem": "^3.2",
-        "symfony/console": "^3.2",
-        "symfony/finder": "^3.2",
-        "slince/event": "^1.0",
-        "guzzlehttp/guzzle": "^6.2",
-        "symfony/dom-crawler": "^3.2",
-        "symfony/css-selector": "^3.2"
     },
     "bin": [
         "yark"
