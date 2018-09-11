@@ -3,4 +3,4 @@ composer.lock
 vendor/
 assets/
 dst/
-*.xlsx
+*.csv

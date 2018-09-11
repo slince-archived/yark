@@ -36,7 +36,7 @@ EOT;
      */
     public function getHelp()
     {
-        return parent::getHelp() . static::LOGO;
+        return parent::getHelp() . PHP_EOL .  static::LOGO;
     }
 
     /**

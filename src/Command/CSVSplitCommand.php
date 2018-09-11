@@ -25,10 +25,11 @@ class CSVSplitCommand extends Command
     public function configure()
     {
         $this->setName('csv:split')
-            ->setDescription('将 csv 大文件切割为多个小文件')
+            ->setDescription('将CSV大文件切割为多个小文件')
             ->addArgument('csv', InputArgument::REQUIRED, '源文件位置')
-            ->addOption('total', 't', InputOption::VALUE_REQUIRED, '每个小文件保存的数据量')
-            ->addOption('header', null, InputOption::VALUE_OPTIONAL, '保留header');
+            ->addOption('total', null, InputOption::VALUE_REQUIRED, '每个小文件保存的数据量')
+            ->addOption('with-header', null, InputOption::VALUE_OPTIONAL, '源文件里第一行是否是header')
+            ->addOption('keep-header', null, InputOption::VALUE_OPTIONAL, '新文件里是否保留header');
     }
 
     /**
@@ -42,20 +43,21 @@ class CSVSplitCommand extends Command
             throw new \InvalidArgumentException(sprintf('文件 "%s" 不存在', $sourceFile));
         }
         $this->splitCSV($sourceFile,
-            $input->getArgument('total'),
-            $input->getOption('header')
+            (int)$input->getOption('total'),
+            $input->getOption('with-header'),
+            $input->getOption('keep-header')
         );
     }
 
-    protected function splitCSV($srcFile, $total, $keepHeader)
+    protected function splitCSV($srcFile, $total, $withHeader, $keepHeader)
     {
         $srcFp = @fopen($srcFile, 'r');
         $pathname = dirname($srcFile) ?: getcwd();
-        $basename = basename($srcFile, 'csv');
+        $basename = basename($srcFile, '.csv');
         if ($srcFp === false) {
             throw new \RuntimeException(sprintf('文件 "%s" 打开失败', $srcFile));
         }
-        $header = fgets($srcFp);
+        $header = $withHeader && $keepHeader ? fgets($srcFp) : '';
         $line = 0;
         $index = 0;
         $dstFp = null;
